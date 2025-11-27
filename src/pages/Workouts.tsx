@@ -187,7 +187,7 @@ const Workouts = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.25 + index * 0.05 }}
             >
-              <Card className="overflow-hidden shadow-xl bg-white/10 backdrop-blur-md border-white/20 hover:bg-white/15 transition-all">
+              <Card className="overflow-hidden shadow-xl bg-white border-white/20 hover:bg-white/95 transition-all">
                 <div className="flex">
                   {/* Thumbnail */}
                   <div
@@ -205,10 +205,10 @@ const Workouts = () => {
                   <div className="flex-1 p-4 flex flex-col">
                     <div className="flex items-start justify-between mb-2">
                       <div className="flex-1">
-                        <h3 className="font-bold text-[#F4F4F4] mb-1 text-base">
+                        <h3 className="font-bold text-black mb-1 text-base">
                           {workout.name}
                         </h3>
-                        <div className="flex items-center gap-3 text-xs text-[#F4F4F4]/70">
+                        <div className="flex items-center gap-3 text-xs text-black/60">
                           <div className="flex items-center gap-1">
                             <Clock className="h-3 w-3" />
                             <span>{workout.duration} min</span>
@@ -223,14 +223,14 @@ const Workouts = () => {
                       {/* Bookmark */}
                       <button
                         onClick={() => toggleBookmark(workout.id)}
-                        className="p-2 rounded-full hover:bg-white/10 transition-colors"
+                        className="p-2 rounded-full hover:bg-black/5 transition-colors"
                       >
                         <Bookmark
                           className={cn(
                             "h-4 w-4 transition-colors",
                             bookmarkedWorkouts.has(workout.id)
-                              ? "fill-[#FF9ACF] text-[#FF9ACF]"
-                              : "text-[#F4F4F4]/60"
+                              ? "fill-[#FF005C] text-[#FF005C]"
+                              : "text-black/40"
                           )}
                         />
                       </button>
