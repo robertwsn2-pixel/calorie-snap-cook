@@ -64,7 +64,7 @@ const Index = () => {
 
       <main className="container max-w-2xl mx-auto px-6 py-6 space-y-5">
         {/* Action Buttons - Top Priority */}
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-3 gap-3">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -72,11 +72,26 @@ const Index = () => {
           >
             <Button
               onClick={() => navigate("/food-photo")}
-              className="w-full h-28 bg-gradient-primary hover:opacity-90 transition-smooth flex-col gap-2 shadow-medium border-0"
+              className="w-full h-24 bg-gradient-primary hover:opacity-90 transition-smooth flex-col gap-2 shadow-medium border-0"
               size="lg"
             >
-              <Camera className="h-8 w-8" />
-              <span className="text-sm font-medium">Food Photo</span>
+              <Camera className="h-7 w-7" />
+              <span className="text-xs font-medium">Food Photo</span>
+            </Button>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.05 }}
+          >
+            <Button
+              onClick={() => navigate("/workouts")}
+              className="w-full h-24 bg-gradient-to-br from-slate-800 to-slate-900 hover:opacity-90 transition-smooth flex-col gap-2 shadow-medium border-0 text-white"
+              size="lg"
+            >
+              <Activity className="h-7 w-7" />
+              <span className="text-xs font-medium">Workouts</span>
             </Button>
           </motion.div>
 
@@ -87,11 +102,11 @@ const Index = () => {
           >
             <Button
               onClick={() => navigate("/recipes")}
-              className="w-full h-28 bg-gradient-accent hover:opacity-90 transition-smooth flex-col gap-2 shadow-medium border-0"
+              className="w-full h-24 bg-gradient-accent hover:opacity-90 transition-smooth flex-col gap-2 shadow-medium border-0"
               size="lg"
             >
-              <ChefHat className="h-8 w-8" />
-              <span className="text-sm font-medium">Recipes</span>
+              <ChefHat className="h-7 w-7" />
+              <span className="text-xs font-medium">Recipes</span>
             </Button>
           </motion.div>
         </div>
