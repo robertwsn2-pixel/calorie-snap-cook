@@ -57,11 +57,44 @@ const Index = () => {
       </header>
 
       <main className="container max-w-2xl mx-auto px-6 py-6 space-y-5">
+        {/* Action Buttons - Top Priority */}
+        <div className="grid grid-cols-2 gap-3">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.05 }}
+          >
+            <Button
+              onClick={() => navigate("/food-photo")}
+              className="w-full h-28 bg-gradient-primary hover:opacity-90 transition-smooth flex-col gap-2 shadow-medium border-0"
+              size="lg"
+            >
+              <Camera className="h-8 w-8" />
+              <span className="text-sm font-medium">Food Photo</span>
+            </Button>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.05 }}
+          >
+            <Button
+              onClick={() => navigate("/recipes")}
+              className="w-full h-28 bg-gradient-accent hover:opacity-90 transition-smooth flex-col gap-2 shadow-medium border-0"
+              size="lg"
+            >
+              <ChefHat className="h-8 w-8" />
+              <span className="text-sm font-medium">Recipes</span>
+            </Button>
+          </motion.div>
+        </div>
+
         {/* Calorie Progress */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.05 }}
+          transition={{ delay: 0.1 }}
         >
           <Card className="p-5 shadow-soft bg-card border border-border/40">
             <div className="flex items-center justify-between mb-3">
@@ -94,7 +127,7 @@ const Index = () => {
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.1 }}
+          transition={{ delay: 0.15 }}
         >
           <Card className="p-5 shadow-soft bg-card border border-border/40">
             <div className="flex items-center justify-between mb-3">
@@ -128,7 +161,7 @@ const Index = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.15 }}
+          transition={{ delay: 0.2 }}
         >
           <Card className="p-5 shadow-soft border border-border/40">
             <div className="flex items-center gap-2 mb-4">
@@ -142,7 +175,7 @@ const Index = () => {
                   key={index}
                   initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.2 + index * 0.05 }}
+                  transition={{ delay: 0.25 + index * 0.05 }}
                   className="flex items-center gap-3 p-3 rounded-xl bg-secondary/30 hover:bg-secondary/50 transition-smooth"
                 >
                   <div className={cn("w-12 h-12 rounded-full flex items-center justify-center text-2xl", meal.color)}>
@@ -168,7 +201,7 @@ const Index = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.25 }}
+          transition={{ delay: 0.3 }}
         >
           <Card className="p-5 shadow-soft bg-card border border-border/40">
             <div className="flex items-center justify-between mb-4">
@@ -235,7 +268,7 @@ const Index = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
+          transition={{ delay: 0.35 }}
         >
           <Card className="p-5 shadow-soft bg-card border border-border/40">
             <div className="flex items-center gap-3">
@@ -253,39 +286,6 @@ const Index = () => {
             </div>
           </Card>
         </motion.div>
-
-        {/* Action Buttons */}
-        <div className="grid grid-cols-2 gap-3 pt-2">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.35 }}
-          >
-            <Button
-              onClick={() => navigate("/food-photo")}
-              className="w-full h-28 bg-gradient-primary hover:opacity-90 transition-smooth flex-col gap-2 shadow-medium border-0"
-              size="lg"
-            >
-              <Camera className="h-8 w-8" />
-              <span className="text-sm font-medium">Food Photo</span>
-            </Button>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.35 }}
-          >
-            <Button
-              onClick={() => navigate("/recipes")}
-              className="w-full h-28 bg-gradient-accent hover:opacity-90 transition-smooth flex-col gap-2 shadow-medium border-0"
-              size="lg"
-            >
-              <ChefHat className="h-8 w-8" />
-              <span className="text-sm font-medium">Recipes</span>
-            </Button>
-          </motion.div>
-        </div>
 
         {/* Progress Button */}
         <motion.div
