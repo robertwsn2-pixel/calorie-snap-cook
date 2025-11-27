@@ -8,6 +8,12 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import { useSwipeNavigation } from "@/hooks/useSwipeNavigation";
+import workoutStrength from "@/assets/workout-strength.jpg";
+import workoutCardio from "@/assets/workout-cardio.jpg";
+import workoutHiit from "@/assets/workout-hiit.jpg";
+import workoutYoga from "@/assets/workout-yoga.jpg";
+import workoutStretching from "@/assets/workout-stretching.jpg";
+import workoutCore from "@/assets/workout-core.jpg";
 
 const Workouts = () => {
   const navigate = useNavigate();
@@ -37,7 +43,7 @@ const Workouts = () => {
       duration: 45,
       calories: 320,
       category: "Strength",
-      thumbnail: "🏋️",
+      thumbnail: workoutStrength,
       color: "from-orange-500/20 to-red-500/20",
     },
     {
@@ -46,7 +52,7 @@ const Workouts = () => {
       duration: 30,
       calories: 280,
       category: "Cardio",
-      thumbnail: "🏃",
+      thumbnail: workoutCardio,
       color: "from-blue-500/20 to-cyan-500/20",
     },
     {
@@ -55,7 +61,7 @@ const Workouts = () => {
       duration: 20,
       calories: 250,
       category: "HIIT",
-      thumbnail: "⚡",
+      thumbnail: workoutHiit,
       color: "from-purple-500/20 to-pink-500/20",
     },
     {
@@ -64,7 +70,7 @@ const Workouts = () => {
       duration: 40,
       calories: 150,
       category: "Mobility",
-      thumbnail: "🧘",
+      thumbnail: workoutYoga,
       color: "from-green-500/20 to-emerald-500/20",
     },
     {
@@ -73,7 +79,7 @@ const Workouts = () => {
       duration: 15,
       calories: 80,
       category: "Stretching",
-      thumbnail: "🤸",
+      thumbnail: workoutStretching,
       color: "from-indigo-500/20 to-blue-500/20",
     },
     {
@@ -82,7 +88,7 @@ const Workouts = () => {
       duration: 25,
       calories: 200,
       category: "Strength",
-      thumbnail: "💪",
+      thumbnail: workoutCore,
       color: "from-amber-500/20 to-orange-500/20",
     },
   ];
@@ -190,15 +196,12 @@ const Workouts = () => {
               <Card className="overflow-hidden shadow-xl bg-white border-white/20 hover:bg-white/95 transition-all">
                 <div className="flex">
                   {/* Thumbnail */}
-                  <div
-                    className={cn(
-                      "w-28 h-28 flex items-center justify-center text-5xl"
-                    )}
-                    style={{
-                      background: "linear-gradient(135deg, rgba(255, 0, 92, 0.3), rgba(255, 154, 207, 0.3))"
-                    }}
-                  >
-                    {workout.thumbnail}
+                  <div className="w-28 h-28 overflow-hidden flex-shrink-0">
+                    <img 
+                      src={workout.thumbnail} 
+                      alt={workout.name}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
 
                   {/* Content */}
