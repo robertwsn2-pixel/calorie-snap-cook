@@ -113,21 +113,16 @@ const Workouts = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background pb-20">
-      <header className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
+    <div className="min-h-screen bg-[#FF6F00] pb-20">
+      <header className="bg-[#FF6F00] border-b border-white/10">
         <div className="container max-w-2xl mx-auto px-6 py-8">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-10 h-10 rounded-full bg-cyan-500/20 flex items-center justify-center">
-                <Dumbbell className="h-5 w-5 text-cyan-400" />
-              </div>
-              <h1 className="text-2xl font-bold">Workout Mode</h1>
-            </div>
-            <p className="text-sm text-white/70">
-              Discover and track your fitness journey
+            <h1 className="text-3xl font-bold text-[#F4F4F4] mb-2">Workout Mode</h1>
+            <p className="text-sm text-[#F4F4F4]/80">
+              Choose your training for today
             </p>
           </motion.div>
         </div>
@@ -141,13 +136,13 @@ const Workouts = () => {
           transition={{ delay: 0.1 }}
         >
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-[#F4F4F4]/60" />
             <Input
               type="text"
               placeholder="Search workouts..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-10 h-12 bg-card border-border/40"
+              className="pl-12 h-14 bg-white/10 backdrop-blur-sm border-white/20 text-[#F4F4F4] placeholder:text-[#F4F4F4]/60 rounded-2xl focus:border-[#FF005C] focus:ring-[#FF005C]"
             />
           </div>
         </motion.div>
@@ -169,14 +164,14 @@ const Workouts = () => {
                   transition={{ delay: 0.2 + index * 0.05 }}
                   onClick={() => setSelectedCategory(category.name)}
                   className={cn(
-                    "flex items-center gap-2 px-4 py-2 rounded-full whitespace-nowrap transition-all",
+                    "flex items-center gap-2 px-5 py-3 rounded-full whitespace-nowrap transition-all font-medium",
                     selectedCategory === category.name
-                      ? "bg-primary text-primary-foreground shadow-medium"
-                      : "bg-secondary/50 text-foreground hover:bg-secondary"
+                      ? "bg-[#FF005C] text-[#F4F4F4] shadow-lg shadow-[#FF005C]/30"
+                      : "bg-white/10 backdrop-blur-sm text-[#F4F4F4]/80 hover:bg-white/20 border border-white/20"
                   )}
                 >
                   <Icon className="h-4 w-4" />
-                  <span className="text-sm font-medium">{category.name}</span>
+                  <span className="text-sm">{category.name}</span>
                 </motion.button>
               );
             })}
@@ -192,14 +187,16 @@ const Workouts = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.25 + index * 0.05 }}
             >
-              <Card className="overflow-hidden shadow-soft bg-card border border-border/40">
+              <Card className="overflow-hidden shadow-xl bg-white/10 backdrop-blur-md border-white/20 hover:bg-white/15 transition-all">
                 <div className="flex">
                   {/* Thumbnail */}
                   <div
                     className={cn(
-                      "w-24 h-24 flex items-center justify-center text-4xl bg-gradient-to-br",
-                      workout.color
+                      "w-28 h-28 flex items-center justify-center text-5xl"
                     )}
+                    style={{
+                      background: "linear-gradient(135deg, rgba(255, 0, 92, 0.3), rgba(255, 154, 207, 0.3))"
+                    }}
                   >
                     {workout.thumbnail}
                   </div>
@@ -208,10 +205,10 @@ const Workouts = () => {
                   <div className="flex-1 p-4 flex flex-col">
                     <div className="flex items-start justify-between mb-2">
                       <div className="flex-1">
-                        <h3 className="font-semibold text-foreground mb-1">
+                        <h3 className="font-bold text-[#F4F4F4] mb-1 text-base">
                           {workout.name}
                         </h3>
-                        <div className="flex items-center gap-3 text-xs text-muted-foreground">
+                        <div className="flex items-center gap-3 text-xs text-[#F4F4F4]/70">
                           <div className="flex items-center gap-1">
                             <Clock className="h-3 w-3" />
                             <span>{workout.duration} min</span>
@@ -226,28 +223,27 @@ const Workouts = () => {
                       {/* Bookmark */}
                       <button
                         onClick={() => toggleBookmark(workout.id)}
-                        className="p-2 rounded-full hover:bg-secondary/50 transition-colors"
+                        className="p-2 rounded-full hover:bg-white/10 transition-colors"
                       >
                         <Bookmark
                           className={cn(
                             "h-4 w-4 transition-colors",
                             bookmarkedWorkouts.has(workout.id)
-                              ? "fill-primary text-primary"
-                              : "text-muted-foreground"
+                              ? "fill-[#FF9ACF] text-[#FF9ACF]"
+                              : "text-[#F4F4F4]/60"
                           )}
                         />
                       </button>
                     </div>
 
-                  {/* Add Button */}
-                  <Button
-                    size="sm"
-                    onClick={() => navigate(`/workouts/${workout.id}`)}
-                    className="w-full mt-auto bg-gradient-to-r from-cyan-500 to-blue-500 hover:opacity-90 text-white border-0"
-                  >
-                    <Plus className="h-3 w-3 mr-1" />
-                    View Details
-                  </Button>
+                    {/* Add Button */}
+                    <Button
+                      size="sm"
+                      onClick={() => navigate(`/workouts/${workout.id}`)}
+                      className="w-full mt-auto bg-gradient-to-r from-[#FF005C] to-[#FF9ACF] hover:opacity-90 text-[#F4F4F4] border-0 rounded-xl font-semibold shadow-lg shadow-[#FF005C]/30"
+                    >
+                      View Details
+                    </Button>
                   </div>
                 </div>
               </Card>
@@ -262,11 +258,11 @@ const Workouts = () => {
             animate={{ opacity: 1 }}
             className="text-center py-12"
           >
-            <div className="w-16 h-16 rounded-full bg-secondary/50 flex items-center justify-center mx-auto mb-4">
-              <Search className="h-8 w-8 text-muted-foreground" />
+            <div className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center mx-auto mb-4">
+              <Search className="h-8 w-8 text-[#F4F4F4]/60" />
             </div>
-            <p className="text-muted-foreground">No workouts found</p>
-            <p className="text-sm text-muted-foreground/70">Try a different search or category</p>
+            <p className="text-[#F4F4F4]/80 font-medium">No workouts found</p>
+            <p className="text-sm text-[#F4F4F4]/60">Try a different search or category</p>
           </motion.div>
         )}
 
@@ -279,7 +275,7 @@ const Workouts = () => {
           <Button
             onClick={() => navigate("/")}
             variant="outline"
-            className="w-full bg-card hover:bg-secondary/50 transition-smooth shadow-soft border-border/40"
+            className="w-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-smooth border-white/20 text-[#F4F4F4] rounded-xl h-12 font-semibold"
           >
             Back to Daily Log
           </Button>
