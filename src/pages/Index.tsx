@@ -6,9 +6,15 @@ import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { useSwipeNavigation } from "@/hooks/useSwipeNavigation";
 
 const Index = () => {
   const navigate = useNavigate();
+  
+  useSwipeNavigation({
+    routes: ["/", "/workouts", "/progress"],
+    enabled: true,
+  });
   const [dailyCalories] = useState({
     consumed: 1250,
     goal: 1800,
