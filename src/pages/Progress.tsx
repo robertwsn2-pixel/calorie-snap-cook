@@ -20,9 +20,15 @@ import {
   CartesianGrid,
   ResponsiveContainer,
 } from "recharts";
+import { useSwipeNavigation } from "@/hooks/useSwipeNavigation";
 
 const Progress = () => {
   const navigate = useNavigate();
+  
+  useSwipeNavigation({
+    routes: ["/", "/workouts", "/progress"],
+    enabled: true,
+  });
 
   // Daily goals data
   const [dailyGoals] = useState({
