@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Camera, ChefHat, Flame, TrendingUp, Apple } from "lucide-react";
+import { Camera, ChefHat, Flame, TrendingUp, Apple, BarChart3 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
@@ -143,16 +143,21 @@ const Index = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
         >
-          <Card className="p-6 bg-gradient-accent text-accent-foreground shadow-medium">
-            <div className="flex items-center gap-3 mb-2">
-              <TrendingUp className="h-6 w-6" />
-              <h3 className="text-lg font-semibold">Continue assim!</h3>
+          <Button
+            onClick={() => navigate("/progress")}
+            className="w-full bg-gradient-accent hover:opacity-90 transition-smooth shadow-medium"
+            size="lg"
+          >
+            <div className="flex items-center gap-3 py-2">
+              <BarChart3 className="h-6 w-6" />
+              <div className="text-left">
+                <h3 className="text-lg font-semibold">Ver Progresso</h3>
+                <p className="text-accent-foreground/80 text-sm">
+                  Acompanhe sua evolução e estatísticas
+                </p>
+              </div>
             </div>
-            <p className="text-accent-foreground/80">
-              Você está no caminho certo para atingir suas metas de saúde. Mantenha o
-              foco e registre todas as refeições!
-            </p>
-          </Card>
+          </Button>
         </motion.div>
       </main>
     </div>
