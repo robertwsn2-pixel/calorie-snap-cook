@@ -240,7 +240,7 @@ const Workouts = () => {
                     <Button
                       size="sm"
                       onClick={() => navigate(`/workouts/${workout.id}`)}
-                      className="w-full mt-auto bg-gradient-to-r from-[#FF005C] to-[#FF9ACF] hover:opacity-90 text-[#F4F4F4] border-0 rounded-xl font-semibold shadow-lg shadow-[#FF005C]/30"
+                      className="w-full mt-auto bg-white hover:bg-white/90 text-black border-0 rounded-xl font-semibold shadow-lg"
                     >
                       View Details
                     </Button>
@@ -274,8 +274,7 @@ const Workouts = () => {
         >
           <Button
             onClick={() => navigate("/")}
-            variant="outline"
-            className="w-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-smooth border-white/20 text-[#F4F4F4] rounded-xl h-12 font-semibold"
+            className="w-full bg-white hover:bg-white/90 text-black border-0 rounded-xl h-12 font-semibold shadow-lg"
           >
             Back to Daily Log
           </Button>
