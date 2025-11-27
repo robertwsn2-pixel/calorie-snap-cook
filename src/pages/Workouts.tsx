@@ -239,15 +239,15 @@ const Workouts = () => {
                       </button>
                     </div>
 
-                    {/* Add Button */}
-                    <Button
-                      size="sm"
-                      onClick={() => addToLog(workout.name, workout.calories, workout.duration)}
-                      className="w-full mt-auto bg-gradient-to-r from-cyan-500 to-blue-500 hover:opacity-90 text-white border-0"
-                    >
-                      <Plus className="h-3 w-3 mr-1" />
-                      Add to Daily Log
-                    </Button>
+                  {/* Add Button */}
+                  <Button
+                    size="sm"
+                    onClick={() => navigate(`/workouts/${workout.id}`)}
+                    className="w-full mt-auto bg-gradient-to-r from-cyan-500 to-blue-500 hover:opacity-90 text-white border-0"
+                  >
+                    <Plus className="h-3 w-3 mr-1" />
+                    View Details
+                  </Button>
                   </div>
                 </div>
               </Card>
