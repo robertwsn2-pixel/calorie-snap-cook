@@ -172,7 +172,7 @@ const Workouts = () => {
                   className={cn(
                     "flex items-center gap-2 px-5 py-3 rounded-full whitespace-nowrap transition-all font-medium",
                     selectedCategory === category.name
-                      ? "bg-[#FF005C] text-[#F4F4F4] shadow-lg shadow-[#FF005C]/30"
+                      ? "bg-white text-black shadow-lg"
                       : "bg-white/10 backdrop-blur-sm text-[#F4F4F4]/80 hover:bg-white/20 border border-white/20"
                   )}
                 >
