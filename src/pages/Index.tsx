@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Camera, ChefHat, Flame, Apple, BarChart3, Droplets, Activity, Zap, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -7,9 +8,11 @@ import { Progress } from "@/components/ui/progress";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { useSwipeNavigation } from "@/hooks/useSwipeNavigation";
+import LanguageSelector from "@/components/LanguageSelector";
 
 const Index = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   
   useSwipeNavigation({
     routes: ["/", "/workouts", "/progress"],
@@ -50,15 +53,18 @@ const Index = () => {
     <div className="min-h-screen bg-background pb-20">
       <header className="bg-card border-b border-border/40">
         <div className="container max-w-2xl mx-auto px-6 py-6">
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-          >
-            <h1 className="text-2xl font-semibold text-foreground mb-1">Daily Log</h1>
-            <p className="text-sm text-muted-foreground">
-              Track your meals, water, and activity
-            </p>
-          </motion.div>
+          <div className="flex items-center justify-between">
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+            >
+              <h1 className="text-2xl font-semibold text-foreground mb-1">{t('home.title')}</h1>
+              <p className="text-sm text-muted-foreground">
+                Track your meals, water, and activity
+              </p>
+            </motion.div>
+            <LanguageSelector />
+          </div>
         </div>
       </header>
 
@@ -76,7 +82,7 @@ const Index = () => {
               size="lg"
             >
               <Camera className="h-7 w-7" />
-              <span className="text-xs font-medium">Food Photo</span>
+              <span className="text-xs font-medium">{t('home.foodPhoto')}</span>
             </Button>
           </motion.div>
 
@@ -91,7 +97,7 @@ const Index = () => {
               size="lg"
             >
               <Activity className="h-7 w-7" />
-              <span className="text-xs font-medium">Workouts</span>
+              <span className="text-xs font-medium">{t('home.workouts')}</span>
             </Button>
           </motion.div>
 
@@ -106,7 +112,7 @@ const Index = () => {
               size="lg"
             >
               <ChefHat className="h-7 w-7" />
-              <span className="text-xs font-medium">Recipes</span>
+              <span className="text-xs font-medium">{t('home.recipes')}</span>
             </Button>
           </motion.div>
         </div>
@@ -123,7 +129,7 @@ const Index = () => {
                 <div className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center">
                   <Flame className="h-4 w-4 text-primary" />
                 </div>
-                <span className="text-sm font-medium text-foreground">Calories</span>
+                <span className="text-sm font-medium text-foreground">{t('home.calories')}</span>
               </div>
               <div className="text-right">
                 <p className="text-2xl font-bold text-foreground">
@@ -156,11 +162,11 @@ const Index = () => {
                 <div className="w-9 h-9 rounded-full bg-accent/10 flex items-center justify-center">
                   <Zap className="h-4 w-4 text-accent" />
                 </div>
-                <span className="text-sm font-medium text-foreground">Streak</span>
+                <span className="text-sm font-medium text-foreground">{t('home.streak')}</span>
               </div>
               <p className="text-2xl font-bold text-foreground">
                 {streak.current}
-                <span className="text-base font-normal text-muted-foreground"> / {streak.goal} days</span>
+                <span className="text-base font-normal text-muted-foreground"> / {streak.goal} {t('home.days')}</span>
               </p>
             </div>
             <div className="flex gap-2">
@@ -187,7 +193,7 @@ const Index = () => {
           <Card className="p-5 shadow-soft border border-border/40">
             <div className="flex items-center gap-2 mb-4">
               <Apple className="h-5 w-5 text-primary" />
-              <h2 className="text-base font-semibold text-foreground">Today's Meals</h2>
+              <h2 className="text-base font-semibold text-foreground">{t('home.meals')}</h2>
             </div>
 
             <div className="space-y-2">
@@ -230,10 +236,10 @@ const Index = () => {
                 <div className="w-9 h-9 rounded-full bg-blue-500/10 flex items-center justify-center">
                   <Droplets className="h-4 w-4 text-blue-500" />
                 </div>
-                <span className="text-sm font-medium text-foreground">Hydration</span>
+                <span className="text-sm font-medium text-foreground">{t('home.hydration')}</span>
               </div>
               <p className="text-sm font-medium text-foreground">
-                {waterIntake.current} / {waterIntake.goal} glasses
+                {waterIntake.current} / {waterIntake.goal} {t('home.glasses')}
               </p>
             </div>
 
@@ -323,7 +329,7 @@ const Index = () => {
             <div className="flex items-center gap-3 py-1">
               <BarChart3 className="h-5 w-5 text-primary" />
               <div className="text-left flex-1">
-                <h3 className="text-sm font-semibold text-foreground">View Progress</h3>
+                <h3 className="text-sm font-semibold text-foreground">{t('home.viewProgress')}</h3>
                 <p className="text-xs text-muted-foreground">
                   Track your evolution and statistics
                 </p>

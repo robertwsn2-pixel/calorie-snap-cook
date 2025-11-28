@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Search, Dumbbell, Heart, Zap, Move, Wind, Bookmark, Clock, Flame, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -8,6 +9,7 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import { useSwipeNavigation } from "@/hooks/useSwipeNavigation";
+import LanguageSelector from "@/components/LanguageSelector";
 import workoutStrength from "@/assets/workout-strength.jpg";
 import workoutCardio from "@/assets/workout-cardio.jpg";
 import workoutHiit from "@/assets/workout-hiit.jpg";
@@ -18,6 +20,7 @@ import workoutCore from "@/assets/workout-core.jpg";
 const Workouts = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { t } = useTranslation();
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [searchQuery, setSearchQuery] = useState("");
   const [bookmarkedWorkouts, setBookmarkedWorkouts] = useState<Set<number>>(new Set());
@@ -122,15 +125,18 @@ const Workouts = () => {
     <div className="min-h-screen bg-[#FF6F00] pb-20">
       <header className="bg-[#FF6F00] border-b border-white/10">
         <div className="container max-w-2xl mx-auto px-6 py-8">
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-          >
-            <h1 className="text-3xl font-bold text-[#F4F4F4] mb-2">Workout Mode</h1>
-            <p className="text-sm text-[#F4F4F4]/80">
-              Choose your training for today
-            </p>
-          </motion.div>
+          <div className="flex items-center justify-between">
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+            >
+              <h1 className="text-3xl font-bold text-[#F4F4F4] mb-2">{t('workouts.title')}</h1>
+              <p className="text-sm text-[#F4F4F4]/80">
+                Choose your training for today
+              </p>
+            </motion.div>
+            <LanguageSelector />
+          </div>
         </div>
       </header>
 
@@ -145,7 +151,7 @@ const Workouts = () => {
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-[#F4F4F4]/60" />
             <Input
               type="text"
-              placeholder="Search workouts..."
+              placeholder={t('workouts.search')}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="pl-12 h-14 bg-white/10 backdrop-blur-sm border-white/20 text-[#F4F4F4] placeholder:text-[#F4F4F4]/60 rounded-2xl focus:border-[#FF005C] focus:ring-[#FF005C]"
@@ -177,7 +183,7 @@ const Workouts = () => {
                   )}
                 >
                   <Icon className="h-4 w-4" />
-                  <span className="text-sm">{category.name}</span>
+                  <span className="text-sm">{t(`workouts.categories.${category.name.toLowerCase()}`)}</span>
                 </motion.button>
               );
             })}
@@ -214,11 +220,11 @@ const Workouts = () => {
                         <div className="flex items-center gap-3 text-xs text-black/60">
                           <div className="flex items-center gap-1">
                             <Clock className="h-3 w-3" />
-                            <span>{workout.duration} min</span>
+                            <span>{workout.duration} {t('workouts.duration')}</span>
                           </div>
                           <div className="flex items-center gap-1">
                             <Flame className="h-3 w-3" />
-                            <span>{workout.calories} cal</span>
+                            <span>{workout.calories} {t('workouts.calories')}</span>
                           </div>
                         </div>
                       </div>
