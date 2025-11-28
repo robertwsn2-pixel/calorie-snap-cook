@@ -1,0 +1,102 @@
+{
+  "nav": {
+    "home": "Home",
+    "workouts": "Workouts",
+    "progress": "Progress"
+  },
+  "home": {
+    "title": "Daily Log",
+    "foodPhoto": "Food Photo",
+    "workouts": "Workouts",
+    "recipes": "Recipes",
+    "calories": "Calories",
+    "caloriesGoal": "of {{goal}} kcal",
+    "streak": "Streak",
+    "days": "days",
+    "meals": "Meals",
+    "breakfast": "Breakfast",
+    "lunch": "Lunch",
+    "dinner": "Dinner",
+    "hydration": "Hydration",
+    "glasses": "glasses",
+    "activity": "Activity",
+    "steps": "steps",
+    "viewProgress": "View Progress"
+  },
+  "workouts": {
+    "title": "Workout Mode",
+    "search": "Search workouts...",
+    "categories": {
+      "all": "All",
+      "strength": "Strength",
+      "cardio": "Cardio",
+      "hiit": "HIIT",
+      "yoga": "Yoga",
+      "stretching": "Stretching",
+      "core": "Core"
+    },
+    "duration": "min",
+    "calories": "kcal",
+    "addToLog": "Add to Log"
+  },
+  "workoutDetail": {
+    "level": "Level",
+    "exercises": "Exercises",
+    "sets": "sets",
+    "reps": "reps",
+    "rest": "rest",
+    "tipTitle": "Tip",
+    "summary": "Summary",
+    "totalTime": "Total Time",
+    "totalCalories": "Total Calories",
+    "addToLog": "Add to Daily Log",
+    "addedSuccess": "Workout added to daily log!"
+  },
+  "progress": {
+    "title": "Your Progress",
+    "evolution": "Your Evolution",
+    "period": {
+      "7d": "7D",
+      "14d": "14D",
+      "30d": "30D",
+      "90d": "90D"
+    },
+    "workoutVolume": "Workout Volume",
+    "caloriesBurned": "Calories Burned",
+    "hydration": "Hydration Consistency",
+    "mood": "Average Mood",
+    "frequency": "Training Frequency",
+    "meals": "Meal Balance",
+    "viewHistory": "View full history"
+  },
+  "foodPhoto": {
+    "title": "Food Photo",
+    "capture": "Capture Photo",
+    "detecting": "Detecting foods...",
+    "detected": "Detected Foods",
+    "portion": "Portion",
+    "total": "Total",
+    "addToLog": "Add to Log",
+    "addedSuccess": "Foods added to daily log!"
+  },
+  "recipes": {
+    "title": "Recipe Generator",
+    "placeholder": "Enter an ingredient...",
+    "add": "Add",
+    "generate": "Generate Recipes",
+    "generating": "Generating recipes...",
+    "time": "min",
+    "addToLog": "Add to Log",
+    "addedSuccess": "Recipe added to daily log!"
+  },
+  "notFound": {
+    "title": "404",
+    "message": "Oops! Page not found",
+    "back": "Return to Home"
+  },
+  "language": {
+    "select": "Language",
+    "pt": "Português",
+    "en": "English"
+  }
+}

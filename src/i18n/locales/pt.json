@@ -1,0 +1,102 @@
+{
+  "nav": {
+    "home": "Início",
+    "workouts": "Treinos",
+    "progress": "Progresso"
+  },
+  "home": {
+    "title": "Registro Diário",
+    "foodPhoto": "Foto de Comida",
+    "workouts": "Treinos",
+    "recipes": "Receitas",
+    "calories": "Calorias",
+    "caloriesGoal": "de {{goal}} kcal",
+    "streak": "Sequência",
+    "days": "dias",
+    "meals": "Refeições",
+    "breakfast": "Café",
+    "lunch": "Almoço",
+    "dinner": "Jantar",
+    "hydration": "Hidratação",
+    "glasses": "copos",
+    "activity": "Atividade",
+    "steps": "passos",
+    "viewProgress": "Ver Progresso"
+  },
+  "workouts": {
+    "title": "Workout Mode",
+    "search": "Buscar treinos...",
+    "categories": {
+      "all": "Todos",
+      "strength": "Força",
+      "cardio": "Cardio",
+      "hiit": "HIIT",
+      "yoga": "Yoga",
+      "stretching": "Alongamento",
+      "core": "Core"
+    },
+    "duration": "min",
+    "calories": "kcal",
+    "addToLog": "Adicionar ao Registro"
+  },
+  "workoutDetail": {
+    "level": "Nível",
+    "exercises": "Exercícios",
+    "sets": "séries",
+    "reps": "reps",
+    "rest": "descanso",
+    "tipTitle": "Dica",
+    "summary": "Resumo",
+    "totalTime": "Tempo Total",
+    "totalCalories": "Calorias Totais",
+    "addToLog": "Adicionar ao Registro Diário",
+    "addedSuccess": "Treino adicionado ao registro diário!"
+  },
+  "progress": {
+    "title": "Seu Progresso",
+    "evolution": "Sua Evolução",
+    "period": {
+      "7d": "7D",
+      "14d": "14D",
+      "30d": "30D",
+      "90d": "90D"
+    },
+    "workoutVolume": "Volume de Treino",
+    "caloriesBurned": "Calorias Queimadas",
+    "hydration": "Consistência de Hidratação",
+    "mood": "Humor Médio",
+    "frequency": "Frequência de Treino",
+    "meals": "Equilíbrio de Refeições",
+    "viewHistory": "Ver histórico completo"
+  },
+  "foodPhoto": {
+    "title": "Foto de Comida",
+    "capture": "Capturar Foto",
+    "detecting": "Detectando alimentos...",
+    "detected": "Alimentos Detectados",
+    "portion": "Porção",
+    "total": "Total",
+    "addToLog": "Adicionar ao Registro",
+    "addedSuccess": "Alimentos adicionados ao registro diário!"
+  },
+  "recipes": {
+    "title": "Gerador de Receitas",
+    "placeholder": "Digite um ingrediente...",
+    "add": "Adicionar",
+    "generate": "Gerar Receitas",
+    "generating": "Gerando receitas...",
+    "time": "min",
+    "addToLog": "Adicionar ao Registro",
+    "addedSuccess": "Receita adicionada ao registro diário!"
+  },
+  "notFound": {
+    "title": "404",
+    "message": "Ops! Página não encontrada",
+    "back": "Voltar ao Início"
+  },
+  "language": {
+    "select": "Idioma",
+    "pt": "Português",
+    "en": "English"
+  }
+}
