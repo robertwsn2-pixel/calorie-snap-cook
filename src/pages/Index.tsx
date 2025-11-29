@@ -42,11 +42,11 @@ const Index = () => {
 
   const caloriesPercentage = (dailyCalories.consumed / dailyCalories.goal) * 100;
 
-  const meals = [
-    { name: "Breakfast", time: "08:30", calories: 350, icon: "🥐", color: "bg-amber-100 dark:bg-amber-950" },
-    { name: "Lunch", time: "13:00", calories: 715, icon: "🍱", color: "bg-green-100 dark:bg-green-950" },
-    { name: "Snack", time: "10:45", calories: 180, icon: "🍎", color: "bg-red-100 dark:bg-red-950" },
-    { name: "Dinner", time: "--:--", calories: 0, icon: "🍽️", color: "bg-purple-100 dark:bg-purple-950" },
+  const getMeals = () => [
+    { name: t('home.breakfast'), time: "08:30", calories: 350, icon: "🥐", color: "bg-amber-100 dark:bg-amber-950" },
+    { name: t('home.lunch'), time: "13:00", calories: 715, icon: "🍱", color: "bg-green-100 dark:bg-green-950" },
+    { name: t('home.snack'), time: "10:45", calories: 180, icon: "🍎", color: "bg-red-100 dark:bg-red-950" },
+    { name: t('home.dinner'), time: "--:--", calories: 0, icon: "🍽️", color: "bg-purple-100 dark:bg-purple-950" },
   ];
 
   return (
@@ -60,7 +60,7 @@ const Index = () => {
             >
               <h1 className="text-2xl font-semibold text-foreground mb-1">{t('home.title')}</h1>
               <p className="text-sm text-muted-foreground">
-                Track your meals, water, and activity
+                {t('home.subtitle')}
               </p>
             </motion.div>
             <LanguageSelector />
@@ -141,10 +141,10 @@ const Index = () => {
             <Progress value={caloriesPercentage} className="h-2 mb-2" />
             <div className="flex items-center justify-between text-xs">
               <span className="text-muted-foreground">
-                {caloriesPercentage.toFixed(0)}% of goal
+                {caloriesPercentage.toFixed(0)}% {t('home.ofGoal')}
               </span>
               <span className="text-primary font-medium">
-                {dailyCalories.goal - dailyCalories.consumed} remaining
+                {dailyCalories.goal - dailyCalories.consumed} {t('home.remaining')}
               </span>
             </div>
           </Card>
@@ -180,7 +180,9 @@ const Index = () => {
                 />
               ))}
             </div>
-            <p className="text-xs text-muted-foreground mt-2">Keep it up! 1 more day to reach your goal</p>
+            <p className="text-xs text-muted-foreground mt-2">
+              {t('home.streakMotivation', { remaining: streak.goal - streak.current })}
+            </p>
           </Card>
         </motion.div>
 
@@ -197,7 +199,7 @@ const Index = () => {
             </div>
 
             <div className="space-y-2">
-              {meals.map((meal, index) => (
+              {getMeals().map((meal, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, x: -10 }}
@@ -261,7 +263,7 @@ const Index = () => {
 
             {/* Hydration Reminder Widget */}
             <div className="pt-4 border-t border-border/40">
-              <p className="text-xs font-medium text-muted-foreground mb-3">Reminder Mode</p>
+              <p className="text-xs font-medium text-muted-foreground mb-3">{t('home.reminderMode')}</p>
               <div className="flex gap-2">
                 <Button
                   variant={hydrationMode === "normal" ? "default" : "outline"}
@@ -270,7 +272,7 @@ const Index = () => {
                   onClick={() => setHydrationMode("normal")}
                 >
                   <Moon className="h-3 w-3 mr-1.5" />
-                  Normal
+                  {t('home.normal')}
                 </Button>
                 <Button
                   variant={hydrationMode === "work" ? "default" : "outline"}
@@ -279,13 +281,13 @@ const Index = () => {
                   onClick={() => setHydrationMode("work")}
                 >
                   <Zap className="h-3 w-3 mr-1.5" />
-                  Work
+                  {t('home.work')}
                 </Button>
               </div>
               <p className="text-xs text-muted-foreground mt-2">
                 {hydrationMode === "normal"
-                  ? "Reminders every 2 hours"
-                  : "Reminders every hour during work"}
+                  ? t('home.normalReminder')
+                  : t('home.workReminder')}
               </p>
             </div>
           </Card>
@@ -303,12 +305,12 @@ const Index = () => {
                 <Activity className="h-5 w-5 text-green-500" />
               </div>
               <div className="flex-1">
-                <p className="text-sm font-semibold text-foreground">Today's Activity</p>
-                <p className="text-xs text-muted-foreground">{activity.type}</p>
+                <p className="text-sm font-semibold text-foreground">{t('home.todayActivity')}</p>
+                <p className="text-xs text-muted-foreground">{t('home.walking')}</p>
               </div>
               <div className="text-right">
                 <p className="text-2xl font-bold text-foreground">{activity.minutes}</p>
-                <p className="text-xs text-muted-foreground">minutes</p>
+                <p className="text-xs text-muted-foreground">{t('home.minutes')}</p>
               </div>
             </div>
           </Card>
@@ -331,7 +333,7 @@ const Index = () => {
               <div className="text-left flex-1">
                 <h3 className="text-sm font-semibold text-foreground">{t('home.viewProgress')}</h3>
                 <p className="text-xs text-muted-foreground">
-                  Track your evolution and statistics
+                  {t('home.progressSubtitle')}
                 </p>
               </div>
             </div>

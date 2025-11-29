@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Camera, ArrowLeft, Plus, Minus, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Slider } from "@/components/ui/slider";
 import { useToast } from "@/components/ui/use-toast";
 import { motion } from "framer-motion";
+import LanguageSelector from "@/components/LanguageSelector";
 
 interface DetectedFood {
   name: string;
@@ -17,6 +19,7 @@ interface DetectedFood {
 const FoodPhoto = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { t } = useTranslation();
   const [image, setImage] = useState<string | null>(null);
   const [detecting, setDetecting] = useState(false);
   const [detectedFoods, setDetectedFoods] = useState<DetectedFood[]>([]);
@@ -58,8 +61,8 @@ const FoodPhoto = () => {
 
   const handleAddToDiary = () => {
     toast({
-      title: "Refeição adicionada!",
-      description: `${totalCalories} calorias registradas no seu diário`,
+      title: t('foodPhoto.mealAdded'),
+      description: t('foodPhoto.caloriesRegistered', { calories: totalCalories }),
     });
     setTimeout(() => navigate("/"), 1500);
   };
@@ -67,16 +70,19 @@ const FoodPhoto = () => {
   return (
     <div className="min-h-screen bg-gradient-subtle pb-20">
       <header className="sticky top-0 z-10 bg-card/80 backdrop-blur-lg border-b border-border">
-        <div className="container max-w-2xl mx-auto px-4 py-4 flex items-center gap-4">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => navigate("/")}
-            className="rounded-full"
-          >
-            <ArrowLeft className="h-5 w-5" />
-          </Button>
-          <h1 className="text-xl font-semibold">Foto da Comida</h1>
+        <div className="container max-w-2xl mx-auto px-4 py-4 flex items-center justify-between gap-4">
+          <div className="flex items-center gap-4">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => navigate("/")}
+              className="rounded-full"
+            >
+              <ArrowLeft className="h-5 w-5" />
+            </Button>
+            <h1 className="text-xl font-semibold">{t('foodPhoto.title')}</h1>
+          </div>
+          <LanguageSelector />
         </div>
       </header>
 
@@ -89,14 +95,14 @@ const FoodPhoto = () => {
           >
             <Card className="p-12 bg-card shadow-card">
               <Camera className="h-20 w-20 mx-auto mb-6 text-primary" />
-              <h2 className="text-2xl font-semibold mb-2">Tire uma foto da refeição</h2>
+              <h2 className="text-2xl font-semibold mb-2">{t('foodPhoto.takePhoto')}</h2>
               <p className="text-muted-foreground mb-6">
-                Nossa IA identificará os alimentos e calculará as calorias automaticamente
+                {t('foodPhoto.aiDescription')}
               </p>
               <label htmlFor="photo-input">
                 <Button className="bg-gradient-primary hover:opacity-90 transition-smooth">
                   <Camera className="mr-2 h-5 w-5" />
-                  Abrir Câmera
+                  {t('foodPhoto.openCamera')}
                 </Button>
                 <input
                   id="photo-input"
@@ -129,12 +135,12 @@ const FoodPhoto = () => {
                   <div className="h-4 bg-primary/20 rounded w-3/4 mx-auto"></div>
                   <div className="h-4 bg-primary/20 rounded w-1/2 mx-auto"></div>
                 </div>
-                <p className="text-muted-foreground mt-4">Analisando imagem...</p>
+                <p className="text-muted-foreground mt-4">{t('foodPhoto.analyzing')}</p>
               </Card>
             ) : (
               <>
                 <div className="space-y-4">
-                  <h3 className="text-lg font-semibold">Alimentos Detectados</h3>
+                  <h3 className="text-lg font-semibold">{t('foodPhoto.detected')}</h3>
                   {detectedFoods.map((food, index) => (
                     <motion.div
                       key={index}
@@ -154,7 +160,7 @@ const FoodPhoto = () => {
                             <p className="text-2xl font-semibold text-primary">
                               {food.calories}
                             </p>
-                            <p className="text-xs text-muted-foreground">calorias</p>
+                            <p className="text-xs text-muted-foreground">{t('foodPhoto.caloriesLabel')}</p>
                           </div>
                         </div>
                         <div className="flex items-center gap-3">
@@ -194,7 +200,7 @@ const FoodPhoto = () => {
 
                 <Card className="p-6 bg-gradient-primary text-primary-foreground shadow-medium">
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-lg font-medium">Total de Calorias</span>
+                    <span className="text-lg font-medium">{t('foodPhoto.totalCalories')}</span>
                     <span className="text-3xl font-bold">{totalCalories}</span>
                   </div>
                   <Button
@@ -203,7 +209,7 @@ const FoodPhoto = () => {
                     size="lg"
                   >
                     <Check className="mr-2 h-5 w-5" />
-                    Adicionar ao Diário
+                    {t('foodPhoto.addToDiary')}
                   </Button>
                 </Card>
               </>
