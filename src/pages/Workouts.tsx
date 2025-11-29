@@ -132,7 +132,7 @@ const Workouts = () => {
             >
               <h1 className="text-3xl font-bold text-[#F4F4F4] mb-2">{t('workouts.title')}</h1>
               <p className="text-sm text-[#F4F4F4]/80">
-                Choose your training for today
+                {t('workouts.subtitle')}
               </p>
             </motion.div>
             <LanguageSelector />
@@ -270,8 +270,8 @@ const Workouts = () => {
             <div className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center mx-auto mb-4">
               <Search className="h-8 w-8 text-[#F4F4F4]/60" />
             </div>
-            <p className="text-[#F4F4F4]/80 font-medium">No workouts found</p>
-            <p className="text-sm text-[#F4F4F4]/60">Try a different search or category</p>
+            <p className="text-[#F4F4F4]/80 font-medium">{t('workouts.noResults')}</p>
+            <p className="text-sm text-[#F4F4F4]/60">{t('workouts.tryDifferent')}</p>
           </motion.div>
         )}
 
@@ -285,7 +285,7 @@ const Workouts = () => {
             onClick={() => navigate("/")}
             className="w-full bg-white hover:bg-white/90 text-black border-0 rounded-xl h-12 font-semibold shadow-lg"
           >
-            Back to Daily Log
+            {t('workouts.backToLog')}
           </Button>
         </motion.div>
       </main>

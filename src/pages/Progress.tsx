@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { ArrowLeft, Droplets, TrendingUp, Heart, Dumbbell, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
+import LanguageSelector from "@/components/LanguageSelector";
 import {
   ChartContainer,
   ChartTooltip,
@@ -25,6 +27,7 @@ import { cn } from "@/lib/utils";
 
 const Progress = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   
   useSwipeNavigation({
     routes: ["/", "/workouts", "/progress"],
@@ -34,71 +37,71 @@ const Progress = () => {
   const [selectedPeriod, setSelectedPeriod] = useState<"7D" | "14D" | "30D" | "90D">("7D");
 
   const periods = [
-    { label: "7D", value: "7D" },
-    { label: "14D", value: "14D" },
-    { label: "30D", value: "30D" },
-    { label: "90D", value: "90D" },
+    { label: t('progress.period.7d'), value: "7D" },
+    { label: t('progress.period.14d'), value: "14D" },
+    { label: t('progress.period.30d'), value: "30D" },
+    { label: t('progress.period.90d'), value: "90D" },
   ];
 
   // Main chart data - Workout volume + calories
   const mainChartData = [
-    { day: "Mon", workouts: 45, calories: 320 },
-    { day: "Tue", workouts: 60, calories: 450 },
-    { day: "Wed", workouts: 30, calories: 280 },
-    { day: "Thu", workouts: 75, calories: 520 },
-    { day: "Fri", workouts: 50, calories: 380 },
-    { day: "Sat", workouts: 90, calories: 620 },
-    { day: "Sun", workouts: 40, calories: 300 },
+    { day: t('progress.mon'), workouts: 45, calories: 320 },
+    { day: t('progress.tue'), workouts: 60, calories: 450 },
+    { day: t('progress.wed'), workouts: 30, calories: 280 },
+    { day: t('progress.thu'), workouts: 75, calories: 520 },
+    { day: t('progress.fri'), workouts: 50, calories: 380 },
+    { day: t('progress.sat'), workouts: 90, calories: 620 },
+    { day: t('progress.sun'), workouts: 40, calories: 300 },
   ];
 
   // Hydration consistency
   const hydrationData = [
-    { day: "Mon", glasses: 7 },
-    { day: "Tue", glasses: 8 },
-    { day: "Wed", glasses: 6 },
-    { day: "Thu", glasses: 8 },
-    { day: "Fri", glasses: 7 },
-    { day: "Sat", glasses: 8 },
-    { day: "Sun", glasses: 6 },
+    { day: t('progress.mon'), glasses: 7 },
+    { day: t('progress.tue'), glasses: 8 },
+    { day: t('progress.wed'), glasses: 6 },
+    { day: t('progress.thu'), glasses: 8 },
+    { day: t('progress.fri'), glasses: 7 },
+    { day: t('progress.sat'), glasses: 8 },
+    { day: t('progress.sun'), glasses: 6 },
   ];
 
   // Mood averages
   const moodData = [
-    { day: "Mon", mood: 7 },
-    { day: "Tue", mood: 8 },
-    { day: "Wed", mood: 6 },
-    { day: "Thu", mood: 9 },
-    { day: "Fri", mood: 8 },
-    { day: "Sat", mood: 9 },
-    { day: "Sun", mood: 7 },
+    { day: t('progress.mon'), mood: 7 },
+    { day: t('progress.tue'), mood: 8 },
+    { day: t('progress.wed'), mood: 6 },
+    { day: t('progress.thu'), mood: 9 },
+    { day: t('progress.fri'), mood: 8 },
+    { day: t('progress.sat'), mood: 9 },
+    { day: t('progress.sun'), mood: 7 },
   ];
 
   // Training frequency
   const trainingData = [
-    { day: "Mon", sessions: 1 },
-    { day: "Tue", sessions: 2 },
-    { day: "Wed", sessions: 1 },
-    { day: "Thu", sessions: 2 },
-    { day: "Fri", sessions: 1 },
-    { day: "Sat", sessions: 2 },
-    { day: "Sun", sessions: 1 },
+    { day: t('progress.mon'), sessions: 1 },
+    { day: t('progress.tue'), sessions: 2 },
+    { day: t('progress.wed'), sessions: 1 },
+    { day: t('progress.thu'), sessions: 2 },
+    { day: t('progress.fri'), sessions: 1 },
+    { day: t('progress.sat'), sessions: 2 },
+    { day: t('progress.sun'), sessions: 1 },
   ];
 
   // Meal balance
   const mealData = [
-    { type: "Breakfast", percentage: 95 },
-    { type: "Lunch", percentage: 100 },
-    { type: "Dinner", percentage: 85 },
-    { type: "Snacks", percentage: 70 },
+    { type: t('progress.breakfast'), percentage: 95 },
+    { type: t('progress.lunch'), percentage: 100 },
+    { type: t('progress.dinner'), percentage: 85 },
+    { type: t('progress.snacks'), percentage: 70 },
   ];
 
   const chartConfig = {
     workouts: {
-      label: "Workout Minutes",
+      label: t('progress.workoutMinutes'),
       color: "hsl(var(--primary))",
     },
     calories: {
-      label: "Calories Burned",
+      label: t('progress.caloriesBurnedLabel'),
       color: "hsl(var(--accent))",
     },
   };
@@ -120,9 +123,13 @@ const Progress = () => {
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
+            className="flex items-center justify-between"
           >
-            <h1 className="text-2xl font-semibold text-foreground mb-1">Your Evolution</h1>
-            <p className="text-sm text-muted-foreground">Track your progress and insights</p>
+            <div>
+              <h1 className="text-2xl font-semibold text-foreground mb-1">{t('progress.evolution')}</h1>
+              <p className="text-sm text-muted-foreground">{t('progress.subtitle')}</p>
+            </div>
+            <LanguageSelector />
           </motion.div>
         </div>
       </header>
@@ -159,8 +166,8 @@ const Progress = () => {
         >
           <Card className="p-6 shadow-soft border-border/40">
             <div className="mb-6">
-              <h2 className="text-lg font-semibold text-foreground mb-1">Activity Overview</h2>
-              <p className="text-xs text-muted-foreground">Workout minutes and calories burned</p>
+              <h2 className="text-lg font-semibold text-foreground mb-1">{t('progress.activityOverview')}</h2>
+              <p className="text-xs text-muted-foreground">{t('progress.activityDescription')}</p>
             </div>
 
             <ChartContainer config={chartConfig} className="h-[280px] w-full">
@@ -212,11 +219,11 @@ const Progress = () => {
             <div className="flex items-center justify-center gap-6 mt-6 pt-4 border-t border-border/40">
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 rounded-full bg-primary" />
-                <span className="text-xs text-muted-foreground">Workout Minutes</span>
+                <span className="text-xs text-muted-foreground">{t('progress.workoutMinutes')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 rounded-full bg-accent" />
-                <span className="text-xs text-muted-foreground">Calories Burned</span>
+                <span className="text-xs text-muted-foreground">{t('progress.caloriesBurned')}</span>
               </div>
             </div>
           </Card>
@@ -236,8 +243,8 @@ const Progress = () => {
                   <Droplets className="h-5 w-5 text-blue-500" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground text-sm">Hydration</h3>
-                  <p className="text-xs text-muted-foreground">Daily water intake</p>
+                  <h3 className="font-semibold text-foreground text-sm">{t('progress.hydration')}</h3>
+                  <p className="text-xs text-muted-foreground">{t('progress.dailyWaterIntake')}</p>
                 </div>
               </div>
 
@@ -268,7 +275,7 @@ const Progress = () => {
               </ChartContainer>
 
               <p className="text-center text-sm font-semibold text-foreground mt-4">
-                7.3 <span className="text-xs font-normal text-muted-foreground">avg glasses/day</span>
+                7.3 <span className="text-xs font-normal text-muted-foreground">{t('progress.avgGlassesDay')}</span>
               </p>
             </Card>
           </motion.div>
@@ -285,8 +292,8 @@ const Progress = () => {
                   <Heart className="h-5 w-5 text-pink-500" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground text-sm">Mood</h3>
-                  <p className="text-xs text-muted-foreground">Daily mood score</p>
+                  <h3 className="font-semibold text-foreground text-sm">{t('progress.mood')}</h3>
+                  <p className="text-xs text-muted-foreground">{t('progress.dailyMoodScore')}</p>
                 </div>
               </div>
 
@@ -320,7 +327,7 @@ const Progress = () => {
               </ChartContainer>
 
               <p className="text-center text-sm font-semibold text-foreground mt-4">
-                7.7 <span className="text-xs font-normal text-muted-foreground">avg mood score</span>
+                7.7 <span className="text-xs font-normal text-muted-foreground">{t('progress.avgMoodScore')}</span>
               </p>
             </Card>
           </motion.div>
@@ -337,8 +344,8 @@ const Progress = () => {
                   <Dumbbell className="h-5 w-5 text-green-500" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground text-sm">Training Frequency</h3>
-                  <p className="text-xs text-muted-foreground">Sessions per day</p>
+                  <h3 className="font-semibold text-foreground text-sm">{t('progress.frequency')}</h3>
+                  <p className="text-xs text-muted-foreground">{t('progress.sessionsPerDay')}</p>
                 </div>
               </div>
 
@@ -369,7 +376,7 @@ const Progress = () => {
               </ChartContainer>
 
               <p className="text-center text-sm font-semibold text-foreground mt-4">
-                1.4 <span className="text-xs font-normal text-muted-foreground">avg sessions/day</span>
+                1.4 <span className="text-xs font-normal text-muted-foreground">{t('progress.avgSessionsDay')}</span>
               </p>
             </Card>
           </motion.div>
@@ -386,8 +393,8 @@ const Progress = () => {
                   <Calendar className="h-5 w-5 text-orange-500" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground text-sm">Meal Balance</h3>
-                  <p className="text-xs text-muted-foreground">Consistency score</p>
+                  <h3 className="font-semibold text-foreground text-sm">{t('progress.meals')}</h3>
+                  <p className="text-xs text-muted-foreground">{t('progress.consistencyScore')}</p>
                 </div>
               </div>
 
@@ -412,7 +419,7 @@ const Progress = () => {
               </div>
 
               <p className="text-center text-sm font-semibold text-foreground mt-6">
-                88% <span className="text-xs font-normal text-muted-foreground">overall consistency</span>
+                88% <span className="text-xs font-normal text-muted-foreground">{t('progress.overallConsistency')}</span>
               </p>
             </Card>
           </motion.div>
@@ -433,7 +440,7 @@ const Progress = () => {
             }}
           >
             <TrendingUp className="h-4 w-4 mr-2" />
-            View Full History
+            {t('progress.viewHistory')}
           </Button>
         </motion.div>
       </main>

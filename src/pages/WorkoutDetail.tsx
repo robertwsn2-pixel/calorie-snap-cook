@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { ArrowLeft, Bookmark, Plus, Minus, Lightbulb, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -8,6 +9,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
+import LanguageSelector from "@/components/LanguageSelector";
 
 interface Exercise {
   id: number;
@@ -24,6 +26,7 @@ interface Exercise {
 const WorkoutDetail = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { t } = useTranslation();
   const { id } = useParams();
   const [isBookmarked, setIsBookmarked] = useState(false);
 
@@ -121,7 +124,7 @@ const WorkoutDetail = () => {
 
   const addToLog = () => {
     toast({
-      title: "Added to Daily Log",
+      title: t('workoutDetail.addedSuccess'),
       description: `${workout.name} (${workout.duration} min, ${workout.calories} cal)`,
     });
     navigate("/");
@@ -132,14 +135,17 @@ const WorkoutDetail = () => {
       {/* Header */}
       <header className="bg-slate-900/50 backdrop-blur-sm border-b border-slate-800/50 sticky top-0 z-10">
         <div className="container max-w-2xl mx-auto px-6 py-4">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => navigate("/workouts")}
-            className="text-white hover:bg-slate-800/50 mb-4"
-          >
-            <ArrowLeft className="h-5 w-5" />
-          </Button>
+          <div className="flex items-center justify-between mb-4">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => navigate("/workouts")}
+              className="text-white hover:bg-slate-800/50"
+            >
+              <ArrowLeft className="h-5 w-5" />
+            </Button>
+            <LanguageSelector />
+          </div>
 
           <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -149,7 +155,7 @@ const WorkoutDetail = () => {
               <div className="flex-1">
                 <h1 className="text-2xl font-bold mb-1">{workout.name}</h1>
                 <p className="text-sm text-slate-400 mb-1">
-                  {workout.duration} min • {workout.calories} kcal • Level: {workout.level}
+                  {workout.duration} min • {workout.calories} kcal • {t('workoutDetail.level')}: {workout.level}
                 </p>
                 <p className="text-xs text-slate-500">{workout.description}</p>
               </div>
@@ -173,7 +179,7 @@ const WorkoutDetail = () => {
                 className="h-1.5 bg-slate-800"
               />
               <p className="text-xs text-slate-500 mt-1.5">
-                {completedCount} of {exercises.length} exercises completed
+                {completedCount} {t('workoutDetail.exercisesCompleted', { total: exercises.length })}
               </p>
             </div>
           </motion.div>
@@ -226,7 +232,7 @@ const WorkoutDetail = () => {
 
                     {/* Sets/Reps/Rest */}
                     <p className="text-xs text-slate-500 mb-3">
-                      {exercise.sets} sets • {exercise.reps} reps • {exercise.rest}s rest
+                      {exercise.sets} {t('workoutDetail.sets')} • {exercise.reps} {t('workoutDetail.reps')} • {exercise.rest}s {t('workoutDetail.rest')}
                     </p>
 
                     {/* Rep Counter */}
@@ -246,7 +252,7 @@ const WorkoutDetail = () => {
                           <span className="text-sm font-medium text-orange-500">
                             {exercise.currentReps}
                           </span>
-                          <span className="text-xs text-slate-500"> / {exercise.reps} reps</span>
+                          <span className="text-xs text-slate-500"> / {exercise.reps} {t('workoutDetail.reps')}</span>
                         </div>
 
                         <Button
@@ -286,9 +292,7 @@ const WorkoutDetail = () => {
               </div>
               <div className="flex-1">
                 <p className="text-sm text-slate-300 leading-relaxed">
-                  <span className="font-semibold text-orange-500">Tip:</span> Keep your
-                  posture aligned and breathe during each rep. Focus on form over speed
-                  for better results.
+                  <span className="font-semibold text-orange-500">{t('workoutDetail.tipTitle')}:</span> {t('workoutDetail.tipText')}
                 </p>
               </div>
             </div>
@@ -306,11 +310,11 @@ const WorkoutDetail = () => {
           <Card className="bg-slate-900/50 border-slate-800/50 p-5">
             <div className="flex items-center justify-between text-sm mb-4">
               <div>
-                <p className="text-slate-400 text-xs mb-1">Total Time</p>
+                <p className="text-slate-400 text-xs mb-1">{t('workoutDetail.totalTime')}</p>
                 <p className="text-xl font-bold text-white">{workout.duration} min</p>
               </div>
               <div className="text-right">
-                <p className="text-slate-400 text-xs mb-1">Estimated Calories</p>
+                <p className="text-slate-400 text-xs mb-1">{t('workoutDetail.estimatedCalories')}</p>
                 <p className="text-xl font-bold text-orange-500">{workout.calories} kcal</p>
               </div>
             </div>
@@ -321,7 +325,7 @@ const WorkoutDetail = () => {
               className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white border-0 shadow-lg shadow-orange-500/30 h-12 text-base font-semibold"
             >
               <Check className="h-5 w-5 mr-2" />
-              Add to Daily Log
+              {t('workoutDetail.addToLog')}
             </Button>
           </Card>
         </motion.div>
