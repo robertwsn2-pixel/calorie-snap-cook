@@ -21,6 +21,12 @@ const Index = () => {
   const [session, setSession] = useState<Session | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   
+  // ALL HOOKS MUST BE AT THE TOP - before any conditional returns
+  useSwipeNavigation({
+    routes: ["/", "/workouts", "/progress"],
+    enabled: true,
+  });
+  
   useEffect(() => {
     // Set up auth state listener FIRST
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
@@ -65,6 +71,7 @@ const Index = () => {
     }
   };
 
+  // Early returns AFTER all hooks
   if (isLoading) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
@@ -76,11 +83,6 @@ const Index = () => {
   if (!user) {
     return null;
   }
-  
-  useSwipeNavigation({
-    routes: ["/", "/workouts", "/progress"],
-    enabled: true,
-  });
   const [dailyCalories] = useState({
     consumed: 1250,
     goal: 1800,
