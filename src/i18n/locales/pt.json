@@ -164,5 +164,30 @@
     "select": "Idioma",
     "pt": "Português",
     "en": "English"
+  },
+  "auth": {
+    "login": "Entrar",
+    "signup": "Cadastrar",
+    "email": "E-mail",
+    "password": "Senha",
+    "displayName": "Nome de Exibição",
+    "loginTitle": "Bem-vindo de volta",
+    "loginSubtitle": "Entre para continuar seu progresso",
+    "signupTitle": "Comece sua jornada",
+    "signupSubtitle": "Crie sua conta e alcance seus objetivos",
+    "noAccount": "Não tem uma conta?",
+    "hasAccount": "Já tem uma conta?",
+    "signingIn": "Entrando...",
+    "signingUp": "Cadastrando...",
+    "emailRequired": "E-mail é obrigatório",
+    "emailInvalid": "E-mail inválido",
+    "passwordRequired": "Senha é obrigatória",
+    "passwordMin": "Senha deve ter no mínimo 6 caracteres",
+    "displayNameRequired": "Nome é obrigatório",
+    "loginError": "Erro ao fazer login",
+    "signupError": "Erro ao criar conta",
+    "loginSuccess": "Login realizado com sucesso!",
+    "signupSuccess": "Conta criada com sucesso!",
+    "logout": "Sair"
   }
 }

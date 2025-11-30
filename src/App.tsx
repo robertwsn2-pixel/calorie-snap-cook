@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
+import Auth from "./pages/Auth";
 import FoodPhoto from "./pages/FoodPhoto";
 import RecipeGenerator from "./pages/RecipeGenerator";
 import Progress from "./pages/Progress";
@@ -21,6 +22,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/auth" element={<Auth />} />
           <Route path="/food-photo" element={<FoodPhoto />} />
           <Route path="/recipes" element={<RecipeGenerator />} />
           <Route path="/progress" element={<Progress />} />
