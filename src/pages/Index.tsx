@@ -17,9 +17,28 @@ const Index = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { toast } = useToast();
+  
+  // ALL STATE HOOKS MUST BE AT THE TOP
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [dailyCalories] = useState({
+    consumed: 1250,
+    goal: 1800,
+  });
+  const [streak] = useState({
+    current: 3,
+    goal: 4,
+  });
+  const [waterIntake] = useState({
+    current: 6,
+    goal: 8,
+  });
+  const [hydrationMode, setHydrationMode] = useState<"normal" | "work">("normal");
+  const [activity] = useState({
+    minutes: 15,
+    type: "Walking",
+  });
   
   // ALL HOOKS MUST BE AT THE TOP - before any conditional returns
   useSwipeNavigation({
@@ -83,27 +102,6 @@ const Index = () => {
   if (!user) {
     return null;
   }
-  const [dailyCalories] = useState({
-    consumed: 1250,
-    goal: 1800,
-  });
-
-  const [streak] = useState({
-    current: 3,
-    goal: 4,
-  });
-
-  const [waterIntake] = useState({
-    current: 6,
-    goal: 8,
-  });
-
-  const [hydrationMode, setHydrationMode] = useState<"normal" | "work">("normal");
-
-  const [activity] = useState({
-    minutes: 15,
-    type: "Walking",
-  });
 
   const caloriesPercentage = (dailyCalories.consumed / dailyCalories.goal) * 100;
 
