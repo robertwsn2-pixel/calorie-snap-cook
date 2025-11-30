@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Camera, ChefHat, Flame, Apple, BarChart3, Droplets, Activity, Zap, Moon } from "lucide-react";
+import { Camera, ChefHat, Flame, Apple, BarChart3, Droplets, Activity, Zap, Moon, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
@@ -9,10 +9,73 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { useSwipeNavigation } from "@/hooks/useSwipeNavigation";
 import LanguageSelector from "@/components/LanguageSelector";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
+import type { User, Session } from "@supabase/supabase-js";
 
 const Index = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const { toast } = useToast();
+  const [user, setUser] = useState<User | null>(null);
+  const [session, setSession] = useState<Session | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  
+  useEffect(() => {
+    // Set up auth state listener FIRST
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        setSession(session);
+        setUser(session?.user ?? null);
+        setIsLoading(false);
+      }
+    );
+
+    // THEN check for existing session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+      setUser(session?.user ?? null);
+      setIsLoading(false);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    // Redirect to auth if not logged in
+    if (!isLoading && !user) {
+      navigate('/auth');
+    }
+  }, [user, isLoading, navigate]);
+
+  const handleLogout = async () => {
+    try {
+      const { error } = await supabase.auth.signOut();
+      if (error) throw error;
+      toast({
+        title: t('auth.logout'),
+      });
+      navigate('/auth');
+    } catch (error: any) {
+      toast({
+        title: t('auth.loginError'),
+        description: error.message,
+        variant: 'destructive',
+      });
+    }
+  };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return null;
+  }
   
   useSwipeNavigation({
     routes: ["/", "/workouts", "/progress"],
@@ -63,7 +126,17 @@ const Index = () => {
                 {t('home.subtitle')}
               </p>
             </motion.div>
-            <LanguageSelector />
+            <div className="flex items-center gap-2">
+              <LanguageSelector />
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={handleLogout}
+                className="rounded-full"
+              >
+                <LogOut className="h-5 w-5" />
+              </Button>
+            </div>
           </div>
         </div>
       </header>

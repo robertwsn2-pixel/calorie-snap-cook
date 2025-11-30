@@ -164,5 +164,30 @@
     "select": "Language",
     "pt": "Português",
     "en": "English"
+  },
+  "auth": {
+    "login": "Login",
+    "signup": "Sign Up",
+    "email": "Email",
+    "password": "Password",
+    "displayName": "Display Name",
+    "loginTitle": "Welcome back",
+    "loginSubtitle": "Sign in to continue your progress",
+    "signupTitle": "Start your journey",
+    "signupSubtitle": "Create your account and reach your goals",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "signingIn": "Signing in...",
+    "signingUp": "Signing up...",
+    "emailRequired": "Email is required",
+    "emailInvalid": "Invalid email",
+    "passwordRequired": "Password is required",
+    "passwordMin": "Password must be at least 6 characters",
+    "displayNameRequired": "Display name is required",
+    "loginError": "Error logging in",
+    "signupError": "Error creating account",
+    "loginSuccess": "Login successful!",
+    "signupSuccess": "Account created successfully!",
+    "logout": "Logout"
   }
 }
