@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Camera, ArrowLeft, Plus, Minus, Check } from "lucide-react";
@@ -20,9 +20,14 @@ const FoodPhoto = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const { t } = useTranslation();
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const [image, setImage] = useState<string | null>(null);
   const [detecting, setDetecting] = useState(false);
   const [detectedFoods, setDetectedFoods] = useState<DetectedFood[]>([]);
+
+  const handleOpenCamera = () => {
+    fileInputRef.current?.click();
+  };
 
   const handleImageCapture = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -99,20 +104,21 @@ const FoodPhoto = () => {
               <p className="text-muted-foreground mb-6">
                 {t('foodPhoto.aiDescription')}
               </p>
-              <label htmlFor="photo-input">
-                <Button className="bg-gradient-primary hover:opacity-90 transition-smooth">
-                  <Camera className="mr-2 h-5 w-5" />
-                  {t('foodPhoto.openCamera')}
-                </Button>
-                <input
-                  id="photo-input"
-                  type="file"
-                  accept="image/*"
-                  capture="environment"
-                  className="hidden"
-                  onChange={handleImageCapture}
-                />
-              </label>
+              <Button 
+                onClick={handleOpenCamera}
+                className="bg-gradient-primary hover:opacity-90 transition-smooth"
+              >
+                <Camera className="mr-2 h-5 w-5" />
+                {t('foodPhoto.openCamera')}
+              </Button>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                capture="environment"
+                className="hidden"
+                onChange={handleImageCapture}
+              />
             </Card>
           </motion.div>
         ) : (
